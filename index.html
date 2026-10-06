@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<!-- 
+======================================================================
+  INÍCIO DO <head>
+  Espaço reservado para o snippet do GTM (Google Tag Manager) e metadados.
+======================================================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DP6 & Marvel Analytics | O Universo de Dados dos Gibis</title>
+    
+    <!-- 
+    ======================================================================
+      [INSERIR GTM HEAD AQUI]
+      <!-- Google Tag Manager -->
+      <!-- End Google Tag Manager -->
+    ======================================================================
+    -->
+
+    <style>
+        /* 
+         * DESIGN SYSTEM & ESTILO VISUAL (Inspiração DP6)
+         * Cores: Tons de azul (institucional, focado em dados e tecnologia),
+         * branco para respiro e cinza claro para fundos secundários.
+         * Tipografia: Moderna, limpa e sem serifas.
+         */
+        :root {
+            --dp6-blue-dark: #0f2b4d;
+            --dp6-blue-primary: #0077c8;
+            --dp6-blue-light: #e6f3fa;
+            --dp6-white: #ffffff;
+            --dp6-gray: #f4f5f7;
+            --dp6-text-dark: #333333;
+            --dp6-text-light: #666666;
+            --marvel-red-accent: #e23636; /* Detalhe temático para conectar com Marvel */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--dp6-white);
+            color: var(--dp6-text-dark);
+            line-height: 1.6;
+        }
+
+        /* Tipografia */
+        h1, h2, h3 {
+            color: var(--dp6-blue-dark);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--dp6-text-light);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--dp6-blue-primary);
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--dp6-blue-dark);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--dp6-white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dp6-blue-dark);
+            border-left: 4px solid var(--marvel-red-accent);
+            padding-left: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            color: var(--dp6-blue-dark);
+        }
+
+        /* Botões Globais */
+        .btn {
+            display: inline-block;
+            background-color: var(--dp6-blue-primary);
+            color: var(--dp6-white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--dp6-blue-dark);
+            color: var(--dp6-white);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--dp6-blue-primary);
+            color: var(--dp6-blue-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--dp6-blue-light);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Seção de Serviços / Diferenciais */
+        .services {
+            padding: 4rem 2rem;
+            background-color: var(--dp6-white);
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background-color: var(--dp6-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            border-top: 4px solid var(--dp6-blue-primary);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Formulário (Lead Capture) */
+        .lead-section {
+            background-color: var(--dp6-blue-dark);
+            padding: 4rem 2rem;
+            color: var(--dp6-white);
+        }
+
+        .lead-section h2, .lead-section p {
+            color: var(--dp6-white);
+            text-align: center;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            background-color: var(--dp6-white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dp6-text-dark);
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--dp6-blue-primary);
+        }
+
+        .btn-submit {
+            width: 100%;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a1b2e;
+            color: var(--dp6-white);
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer p {
+            color: #8c9eb5;
+            margin: 0;
+            font-size: 0.875rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<!-- 
+======================================================================
+  FIM DO <head>
+======================================================================
+-->
+
+<!-- 
+======================================================================
+  INÍCIO DO <body>
+  Espaço reservado para o snippet NoScript do GTM.
+======================================================================
+-->
+<body>
+    <!-- 
+    ======================================================================
+      [INSERIR GTM BODY NOSCRIPT AQUI]
+      <!-- Google Tag Manager (noscript) -->
+      <!-- End Google Tag Manager (noscript) -->
+    ======================================================================
+    -->
+
+    <!-- 
+    ======================================================================
+      ABERTURA DO <header>
+    ======================================================================
+    -->
+    <header>
+        <div class="header-container">
+            <div class="logo">DP6 | Marvel Data</div>
+            <nav class="nav-links">
+                <!-- Links com tracking mapeado -->
+                <a href="#inicio" class="track-link">Início</a>
+                <a href="#diferenciais" class="track-link">Diferenciais</a>
+                <a href="#contato" class="btn btn-outline track-link">Assine Agora</a>
+            </nav>
+        </div>
+    </header>
+    <!-- 
+    ======================================================================
+      FECHAMENTO DO <header>
+    ======================================================================
+    -->
+
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="hero">
+            <div class="hero-container">
+                <h1>A Ciência de Dados por trás dos Gibis da Marvel</h1>
+                <p>Descubra como a análise avançada de dados pode revelar padrões ocultos no multiverso, estatísticas de combate dos Vingadores e a evolução do design de personagens ao longo das décadas.</p>
+                <!-- Botão com tracking -->
+                <a href="#contato" class="btn track-btn" data-title="Baixar Relatorio Marvel">Baixar Relatório Completo</a>
+            </div>
+        </section>
+
+        <!-- Seção de Serviços/Diferenciais -->
+        <section id="diferenciais" class="services">
+            <div class="services-container">
+                <h2>Nossos Diferenciais Analíticos</h2>
+                <p>Aplicamos metodologias de engenharia e ciência de dados aos quadrinhos clássicos.</p>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>Métricas de Poder</h3>
+                        <p>Dashboards interativos comparando força, inteligência e durabilidade dos heróis utilizando a escala oficial da Marvel.</p>
+                        <a href="#saibamais" class="track-link">Ver dashboard →</a>
+                    </div>
+                    <div class="service-card">
+                        <h3>Análise de Sentimento</h3>
+                        <p>Mineração de texto e processamento de linguagem natural (NLP) aplicados aos diálogos dos vilões para entender tendências de ameaça.</p>
+                        <a href="#saibamais" class="track-link">Ler artigo →</a>
+                    </div>
+                    <div class="service-card">
+                        <h3>Timeline do Multiverso</h3>
+                        <p>Visualização de grafos rastreando cruzamentos de universos, realidades alternativas e eventos canônicos.</p>
+                        <a href="#saibamais" class="track-link">Explorar multiverso →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formulário de Captura de Leads -->
+        <section id="contato" class="lead-section">
+            <h2>Desbloqueie o Data-Multiverso</h2>
+            <p>Cadastre-se para receber nosso estudo exclusivo sobre os dados da Marvel.</p>
+            
+            <div class="form-container">
+                <!-- O Formulário -->
+                <form id="marvelLeadForm">
+                    <div class="form-group">
+                        <label for="nome">Nome Completo</label>
+                        <input type="text" id="nome" name="nome" placeholder="Ex: Peter Parker" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail Corporativo</label>
+                        <input type="email" id="email" name="email" placeholder="peter@dailybugle.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="empresa">Cargo / Empresa</label>
+                        <input type="text" id="empresa" name="empresa" placeholder="Fotógrafo / Clarim Diário" required>
+                    </div>
+                    
+                    <!-- Botão de Envio (Submit) com tracking programático -->
+                    <button type="submit" class="btn btn-submit" id="btn-submit-form">Receber Relatório</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 DP6 Data & Analytics. Landing Page Pedagógica - Tema Marvel.</p>
+        <div style="margin-top: 10px;">
+            <a href="#privacidade" style="color:#8c9eb5; font-size:12px; margin-right: 15px;" class="track-link">Política de Privacidade</a>
+            <a href="#termos" style="color:#8c9eb5; font-size:12px;" class="track-link">Termos de Uso</a>
+        </div>
+    </footer>
+
+    <!-- 
+    ======================================================================
+      INÍCIO DA CAMADA DE RASTREAMENTO (JAVASCRIPT / DATALAYER)
+    ======================================================================
+    -->
+    <script>
+        /**
+         * LÓGICA DO DATALAYER (DP6 - Analytics)
+         * Este script captura eventos de clique e submissão de formulário
+         * formata (sanitiza) as strings e envia para a camada de dados (dataLayer).
+         */
+
+        // 1. Inicialização do dataLayer (Garantia de que o array existe)
+        window.dataLayer = window.dataLayer || [];
+
+        // Constante de escopo da página atual
+        const PAGE_SECTION_NAME = 'lp-marvel-comics';
+
+        /**
+         * 2. Função de Sanitização Estrita
+         * Regras:
+         * - Lowercase (caixa baixa)
+         * - Sem acentos ou caracteres especiais
+         * - Hífen (-) no lugar de espaços
+         */
+        function sanitizeString(str) {
+            if (!str) return 'valor-indefinido';
+            
+            return str
+                .toString()
+                .toLowerCase() // Converte tudo para minúsculo
+                .normalize('NFD') // Normaliza a string, separando os acentos das letras
+                .replace(/[\u0300-\u036f]/g, '') // Remove os acentos via Regex
+                .replace(/[^a-z0-9\s-]/g, '') // Remove caracteres especiais, permitindo apenas letras, números, espaços e hifens
+                .trim() // Remove espaços em branco nas pontas
+                .replace(/\s+/g, '-'); // Substitui espaços (únicos ou múltiplos) por hífen
+        }
+
+        /**
+         * 3. Função Genérica de Disparo (Push) para o dataLayer
+         */
+        function pushToDataLayer(section, type, title) {
+            const dataLayerObj = {
+                'event': 'clique',
+                'custom_section': sanitizeString(section),
+                'custom_type': sanitizeString(type),
+                'custom_title': sanitizeString(title)
+            };
+            
+            // Empurra para a camada de dados
+            window.dataLayer.push(dataLayerObj);
+            
+            // Log no console para fins pedagógicos / debugging
+            console.log("✅ [DataLayer Push Realizado]:", dataLayerObj);
+        }
+
+        /**
+         * 4. Rastreamento de Cliques (Links e Botões em geral)
+         */
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Seleciona todos os links e botões (exceto botões de submit, pois terão regra própria)
+            const clickableElements = document.querySelectorAll('a, button:not([type="submit"])');
+            
+            clickableElements.forEach(function(el) {
+                el.addEventListener('click', function(e) {
+                    
+                    // Identifica o tipo do elemento
+                    let elementType = el.tagName.toLowerCase();
+                    if (elementType === 'a') {
+                        elementType = 'link';
+                    } else if (elementType === 'button') {
+                        // Verifica se está no header ou footer por contexto de classe ou tag pai
+                        if (el.closest('header')) elementType = 'botao-header';
+                        else if (el.closest('footer')) elementType = 'botao-footer';
+                        else elementType = 'botao';
+                    }
+
+                    // Identifica o título/nome (usa atributo data-title, se existir, senão usa o texto do elemento)
+                    let elementTitle = el.getAttribute('data-title') || el.innerText || el.textContent;
+
+                    // Dispara a função de envio para o dataLayer
+                    pushToDataLayer(PAGE_SECTION_NAME, elementType, elementTitle);
+                });
+            });
+
+            /**
+             * 5. Rastreamento Específico de Envio de Formulário
+             * Regra importante: só disparar caso TODOS os campos obrigatórios estejam preenchidos.
+             */
+            const leadForm = document.getElementById('marvelLeadForm');
+            
+            leadForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Previne o envio real da página para efeitos pedagógicos
+
+                // Captura os valores dos inputs
+                const nomeVal = document.getElementById('nome').value.trim();
+                const emailVal = document.getElementById('email').value.trim();
+                const empresaVal = document.getElementById('empresa').value.trim();
+
+                // Validação de Preenchimento: 
+                // O evento SÓ DISPARA se os 3 campos obrigatórios tiverem conteúdo válido
+                if (nomeVal !== "" && emailVal !== "" && empresaVal !== "") {
+                    
+                    // Se estiver tudo preenchido corretamente, envia para o dataLayer
+                    pushToDataLayer(
+                        PAGE_SECTION_NAME, 
+                        'submit', 
+                        'receber-relatorio' // nome do elemento
+                    );
+
+                    // Ação de feedback visual simulando o sucesso
+                    alert('Dados da Marvel desbloqueados! Formulário enviado com sucesso e evento rastreado no DataLayer.');
+                    leadForm.reset();
+
+                } else {
+                    // Caso o usuário tente forçar envio com campos vazios
+                    console.warn("⚠️ Formulário inválido. O evento do dataLayer NÃO foi disparado.");
+                }
+            });
+        });
+    </script>
+</body>
+<!-- 
+======================================================================
+  FIM DO <body>
+======================================================================
+-->
+</html>
